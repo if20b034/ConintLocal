@@ -1,0 +1,52 @@
+{
+  "name": "dev-ops-test",
+  "version": "0.1.0",
+  "description": "This repository is an example for the lecturers of the `DevOps and Cloud Computing` Course of FHTW",
+  "main": "./dist/server.js",
+  "scripts": {
+    "cleanCache": "rimraf .parcel-cache && rimraf .cache",
+    "cleanDist": "rimraf dist",
+    "cleanModules": "rimraf node_modules",
+    "createDist": "mkdirp dist",
+    "cleanup": "npm run cleanCache && npm run cleanDist && npm run createDist && npm run cleanModules && npm i",
+    "start": "parcel ./src/index.html -p 2021 --out-dir dist",
+    "build": "parcel build --no-cache --out-dir dist ./src/index.html",
+    "lint": "eslint . --ext .ts",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/aichbauer/dev-ops-test.git"
+  },
+  "keywords": [
+    "devops",
+    "cicd",
+    "gitlab",
+    "fhtw"
+  ],
+  "author": "Lukas Aichbauer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/aichbauer/dev-ops-test/issues"
+  },
+  "homepage": "https://gitlab.com/aichbauer/dev-ops-test#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "eslint": "^7.23.0",
+    "jest": "^26.6.3",
+    "mkdirp": "^1.0.4",
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.5",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {},
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    }
+  }
+}

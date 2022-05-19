@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUM</title>
+</head>
+<body>
+  <h1>The ultimate calculator</h1>
+  <form style="display: inline-block;">
+    <div style="display: inline-block;">
+      <label for="a" style="display: block;">A</label>
+      <input type="number" id="a" placeholder="1" value="" />
+    </div>
+    <span>
+      +
+    </span>
+    <div style="display: inline-block;">
+      <label for="b" style="display: block;">B</label>
+      <input type="number" id="b" placeholder="1" value="" />
+    </div>
+  </form>
+  <span> = </span>
+  <span style="border-bottom: double black;" id="showSum"></span>
+  <div style="margin-top: 1rem;">
+    <button id="calculateSumBtn" type="button">Calculate Sum</button>
+  </div>
+  <div style="color: red;" id="showError"></div>
+  <script src="js/index.ts"></script>
+</body>
+</html>
