@@ -15,10 +15,12 @@ pipeline{
 
     stages{
         stage("SETUP"){
-            script{
-                COMMIT_HASH= sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+            steps{
+                script{
+                    COMMIT_HASH= sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
 
-                COMMIT_HASH_PREV_2 = sh(script:"git rev-parse --short HEAD~2", returnStdout:true).trim()
+                    COMMIT_HASH_PREV_2 = sh(script:"git rev-parse --short HEAD~2", returnStdout:true).trim()
+                }
             }
         }
         stage("BUILD"){
@@ -28,17 +30,18 @@ pipeline{
                 }
             }
         }
-
         stage("RUN"){
-            agent{
-                docker{
-                    image: "dockeruser/projectname:$COMMIT_HASH"
+            steps{
+                agent{
+                    docker{
+                        image: "dockeruser/projectname:$COMMIT_HASH"
+                            
+                    }
                 }
             }
         }
-    }
-        stages{
-            stage("INSTALL"){
+        stage("INSTALL"){
+            steps{
                 staps{
                     script {
                         sh "apk add --update nodejs npm"
@@ -46,33 +49,33 @@ pipeline{
                     }
                 }
             }
-            stage("LINT"){
-                steps {
-                    script {
-                        sh "npm run lint"
-                    }
-                }
-            }
-            stage("TEST"){
-                steps{
-                    script{
-                        sh "npm run test"
-                    }
-                }
-            }
-
-            stage("DEPLOY"){
-                steps{
-                    script{
-                        sh "echo deployed"
-                    }
+        }
+        stage("LINT"){
+            steps {
+                script {
+                    sh "npm run lint"
                 }
             }
         }
-        post {
-            always{
-                sh "docker image rm dockername/projectname:$COMMIT_HASH_PREV_2"
-                cleanWs()
+        stage("TEST"){
+            steps{
+                script{
+                    sh "npm run test"
+                }
+            }
+        }
+        stage("DEPLOY"){
+            steps{
+                script{
+                    sh "echo deployed"
+                }
+            }
+        }
+    }
+    post {
+        always{
+            sh "docker image rm dockername/projectname:$COMMIT_HASH_PREV_2"
+            cleanWs()
         }
     }
 }
