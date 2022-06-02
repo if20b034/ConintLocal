@@ -36,6 +36,7 @@ pipeline{
                 }
             }
         }
+    }
         stages{
             stage("INSTALL"){
                 staps{
@@ -72,7 +73,6 @@ pipeline{
             always{
                 sh "docker image rm dockername/projectname:$COMMIT_HASH_PREV_2"
                 cleanWs()
-            }
         }
     }
 }
