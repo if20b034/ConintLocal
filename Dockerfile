@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 
 RUN npm ci --also-dev
-RUN run build
+RUN npm run build
 
 FROM nginx:1.20.1-alpine
 
