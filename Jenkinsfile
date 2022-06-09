@@ -31,36 +31,33 @@ pipeline{
             }
         }
         stage("RUN"){
-            steps{
-                agent{
-                    docker{
-                        image: "dockeruser/projectname:$COMMIT_HASH"
-                            
+            agent{
+                docker{
+                    image "dockeruser/projectname:$COMMIT_HASH"     
+                }
+            }
+            stages{
+                stage("INSTALL"){
+                    steps{
+                        script {
+                            sh "apk add --update nodejs npm"
+                            sh "npm ci --also=dev"
+                        }
                     }
                 }
-            }
-        }
-        stage("INSTALL"){
-            steps{
-                staps{
-                    script {
-                        sh "apk add --update nodejs npm"
-                        sh "npm ci --also=dev"
+                stage("LINT"){
+                    steps {
+                        script {
+                            sh "npm run lint"
+                        }
                     }
                 }
-            }
-        }
-        stage("LINT"){
-            steps {
-                script {
-                    sh "npm run lint"
-                }
-            }
-        }
-        stage("TEST"){
-            steps{
-                script{
-                    sh "npm run test"
+                stage("TEST"){
+                    steps{
+                        script{
+                            sh "npm run test"
+                        }
+                    }
                 }
             }
         }
@@ -72,6 +69,8 @@ pipeline{
             }
         }
     }
+
+
     post {
         always{
             sh "docker image rm dockername/projectname:$COMMIT_HASH_PREV_2"
