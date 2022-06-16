@@ -37,13 +37,13 @@ pipeline{
                 }
             }
             stages{
-                stage("INSTALL"){
-                    steps{
-                        script {
-                            sh "npm ci --also=dev"
-                        }
-                    }
-                }
+                // stage("INSTALL"){
+                //     steps{
+                //         script {
+                //             sh "npm ci --also=dev"
+                //         }
+                //     }
+                // }
                 stage("LINT"){
                     steps {
                         script {
