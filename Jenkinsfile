@@ -40,7 +40,8 @@ pipeline{
                 stage("INSTALL"){
                     steps{
                         script {
-                            sh "apt-get add --update npm"
+                            sh "apt-get install -y npm"
+                            sh "npm install -g npm@latest"
                             sh "npm ci --also=dev"
                         }
                     }
