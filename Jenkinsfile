@@ -40,7 +40,7 @@ pipeline{
                 stage("INSTALL"){
                     steps{
                         script {
-                            sh "apt-get install nodejs"
+                            sh "curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - apt-get install -y nodejs"
                             sh "npm install -g npm@latest"
                             sh "npm ci --also=dev"
                         }
