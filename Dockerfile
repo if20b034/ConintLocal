@@ -6,9 +6,9 @@ WORKDIR /app
 COPY . .
 
 RUN npm ci --also-dev
-RUN npm run-script build
 RUN npm -g install eslint
 RUN npm install -g --save-dev jest 
+RUN npm run-script build
 
 FROM nginx:1.21.6
 
