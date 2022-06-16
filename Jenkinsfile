@@ -63,6 +63,7 @@ pipeline{
         stage("DEPLOY"){
             steps{
                 script{
+                    sh "docker tag conint if20b034/conint:$COMMIT_HASH"
                     sh "docker push if20b034/conint:$COMMIT_HASH"
                 }
             }
