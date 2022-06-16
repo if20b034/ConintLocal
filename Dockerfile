@@ -18,4 +18,4 @@ EXPOSE 80
 
 CMD /usr/sbin/nginx -g "daemon off;"
 
-FROM node:18
+# FROM node:18
