@@ -26,14 +26,14 @@ pipeline{
         stage("BUILD"){
             steps{
                 script{
-                    sh "docker build -t dockeruser/projectname:$COMMIT_HASH ."
+                    sh "docker build -t if20b034/conint:$COMMIT_HASH ."
                 }
             }
         }
         stage("RUN"){
             agent{
                 docker{
-                    image "dockeruser/projectname:$COMMIT_HASH"     
+                    image "if20b034/conint:$COMMIT_HASH"     
                 }
             }
             stages{
@@ -64,7 +64,7 @@ pipeline{
         stage("DEPLOY"){
             steps{
                 script{
-                    sh "echo deployed"
+                    sh "docker push if20b034/conint:$COMMIT_HASH ."
                 }
             }
         }
@@ -73,7 +73,7 @@ pipeline{
 
     post {
         always{
-            sh "docker image rm dockername/projectname:$COMMIT_HASH_PREV_2"
+            sh "docker image rm if20b034/conint:$COMMIT_HASH_PREV_2"
             cleanWs()
         }
     }
