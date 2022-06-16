@@ -40,7 +40,7 @@ pipeline{
                 stage("INSTALL"){
                     steps{
                         script {
-                            sh "apk add --update nodejs npm"
+                            sh "apk add --update npm"
                             sh "npm ci --also=dev"
                         }
                     }
