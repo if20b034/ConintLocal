@@ -26,7 +26,7 @@ pipeline{
         stage("BUILD"){
             steps{
                 script{
-                    sh "docker build -t if20b034/conint:$COMMIT_HASH ."
+                   BUILT_TAG= sh(script: "docker build -t if20b034/conint:$COMMIT_HASH .", returnStdout: true).trim()
                 }
             }
         }
@@ -63,7 +63,7 @@ pipeline{
         stage("DEPLOY"){
             steps{
                 script{
-                    sh "docker tag $COMMIT_HASH if20b034/conint:node"
+                    sh "docker tag $BUILT_TAG if20b034/conint:$COMMIT_HASH"
                     sh "docker push if20b034/conint:$COMMIT_HASH"
                 }
             }
