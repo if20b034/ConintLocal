@@ -65,7 +65,7 @@ pipeline{
                 script{
                     // BUILT_TAG=sh(script:"docker images --quiet", returnStdout: true).trim()
                     sh "docker logout"
-                    sh "docker login --password Nuri333333 --username if20b034@technikum-wien.at"
+                    sh "docker login --password 7d9bd3de-8577-4d4c-b1f7-34b3a8173b69 --username if20b034"
                     sh "docker tag if20b034/conint:$COMMIT_HASH if20b034/conint:$COMMIT_HASH"
                     sh "docker push if20b034/conint:$COMMIT_HASH"
                 }
