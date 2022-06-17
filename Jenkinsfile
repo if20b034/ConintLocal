@@ -64,6 +64,7 @@ pipeline{
             steps{
                 script{
                     // BUILT_TAG=sh(script:"docker images --quiet", returnStdout: true).trim()
+                    sh "docker logout"
                     sh "docker tag if20b034/conint:$COMMIT_HASH if20b034/conint:$COMMIT_HASH"
                     sh "docker push if20b034/conint:$COMMIT_HASH"
                 }
