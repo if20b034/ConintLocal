@@ -11,7 +11,7 @@ RUN npm install -g --save-dev jest
 RUN npm install -g serve
 RUN npm run-script build
 
-RUN npm run serve
+CMD ["npm", "run", "serve"]
 
 # FROM nginx:1.21.6
 # EXPOSE 80
