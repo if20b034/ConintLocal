@@ -4,6 +4,8 @@
 pipeline{
     agent any
 
+    tools {nodejs "nodejs"}
+
     options{
         disableConcurrentBuilds()
         timeout(time:5,unit:'MINUTES')
