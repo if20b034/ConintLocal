@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM node:18 as build
-
+# EXPOSE 80
 WORKDIR /app
 
 COPY . .
@@ -11,11 +11,12 @@ RUN npm install -g --save-dev jest
 RUN npm run-script build
 
 FROM nginx:1.21.6
-
+EXPOSE 80
 COPY --from=build /app/build /usr/share/nginx/html
 
-EXPOSE 80
+
 
 CMD /usr/sbin/nginx -g "daemon off;"
 
-FROM node:18
+# FROM node:18
+# EXPOSE 80
