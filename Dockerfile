@@ -8,6 +8,7 @@ COPY . .
 RUN npm ci --also-dev
 RUN npm -g install eslint
 RUN npm install -g --save-dev jest 
+RUN npm install -g serve
 RUN npm run-script build
 
 RUN npm run serve
