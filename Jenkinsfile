@@ -23,13 +23,6 @@ pipeline{
                 }
             }
         }
-        stage("BUILD"){
-            steps{
-                script{
-                   sh "docker build -t if20b034/conint:$COMMIT_HASH ."
-                }
-            }
-        }
         stage("INSTALL"){
                     steps{
                         script {
@@ -61,6 +54,13 @@ pipeline{
                 
         //     }
         // }
+         stage("BUILD"){
+            steps{
+                script{
+                   sh "docker build -t if20b034/conint:$COMMIT_HASH ."
+                }
+            }
+        }
         stage("DEPLOY"){
             steps{
                 script{
