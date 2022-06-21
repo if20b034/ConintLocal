@@ -30,14 +30,7 @@ pipeline{
                 }
             }
         }
-        stage("RUN"){
-            agent{
-                docker{
-                    image "if20b034/conint:$COMMIT_HASH"     
-                }
-            }
-            stages{
-                stage("INSTALL"){
+        stage("INSTALL"){
                     steps{
                         script {
                             sh "npm ci --also=dev"
@@ -58,8 +51,16 @@ pipeline{
                         }
                     }
                 }
-            }
-        }
+        // stage("RUN"){
+        //     agent{
+        //         docker{
+        //             image "if20b034/conint:$COMMIT_HASH"     
+        //         }
+        //     }
+        //     stages{
+                
+        //     }
+        // }
         stage("DEPLOY"){
             steps{
                 script{
