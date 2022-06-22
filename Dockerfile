@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM node:18 as build
-# EXPOSE 80
+EXPOSE 80
 WORKDIR /app
 
 COPY . .
