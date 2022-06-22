@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
-    "serve": "serve -s build"
+    "serve": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
