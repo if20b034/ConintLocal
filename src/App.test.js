@@ -4,5 +4,5 @@ import {React} from 'react';
 
 test('1 is one', () => {
   render(<App />);
-  expect(1).toBe(1);
+  expect(1).toBe(2);
 });
